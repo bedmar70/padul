@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- v1.14 build:2026030760306-044837 -->
+<!-- v1.22 build:2026030760306-044837 -->
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -276,7 +276,9 @@ body {
 /* ── MODALS ── */
 .mov { position: fixed; inset: 0; background: rgba(28,27,26,.5); z-index: 300; display: flex; align-items: center; justify-content: center; padding: 16px; backdrop-filter: blur(3px); }
 .mov.hidden { display: none; }
-.mb { background: var(--card); border: 1px solid var(--border); border-radius: 20px; width: 100%; max-width: 820px; max-height: 90vh; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 24px 80px rgba(0,0,0,.2); }
+.mb { background: var(--card); border: 1px solid var(--border); border-radius: 16px; width: 100%; max-width: 680px; max-height: 88vh; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 32px 100px rgba(0,0,0,.28); }
+.mb.edit-wide { max-width: 96vw; width: 96vw; max-height: 94vh; border-radius: 14px; }
+
 .mb.sm { max-width: 560px; }
 .mb.sm[style*="620px"] { max-width: 620px; }
 .mh { padding: 18px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 12px; background: #FAFAF8; }
@@ -452,7 +454,7 @@ body {
 
 <!-- EDIT MODAL -->
 <div class="mov hidden" id="edit-mod">
-  <div class="mb" style="max-width:1100px;width:96vw;">
+  <div class="mb edit-wide">
     <div class="mh">
       <div style="flex:1"><div class="mt">&#9999;&#65039; Editar Plantilla</div><div class="ms" id="edit-sub"></div></div>
       <button class="mx" onclick="closeM('edit-mod')">&#215;</button>
@@ -479,7 +481,7 @@ body {
       <span style="font-size:10px;color:#9ca3af;">Markdown</span>
     </div>
     <!-- SPLIT PANE -->
-    <div style="display:flex;height:62vh;min-height:340px;">
+    <div style="display:flex;height:68vh;min-height:380px;">
       <div style="flex:1;display:flex;flex-direction:column;border-right:2px solid #e5e7eb;">
         <div style="padding:6px 12px;font-size:11px;font-weight:600;color:#6b7280;background:#f9fafb;border-bottom:1px solid #e5e7eb;">&#9998; MARKDOWN</div>
         <textarea id="edit-ta" oninput="edPreview()" onkeydown="edKey(event)"
