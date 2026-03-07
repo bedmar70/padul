@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- v1.28 build:2026030760306-044837 -->
+<!-- v1.29 build:2026030760306-044837 -->
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -331,6 +331,24 @@ body {
 #gen-doc blockquote { border-left: 3px solid var(--accent); padding-left: 14px; color: #555; margin: 10px 0; font-style: italic; background: #FEFAED; border-radius: 0 6px 6px 0; padding: 8px 14px; }
 #gen-doc a { color: #0563C1; text-decoration: underline; }
 
+.mc-col { border-left: 3px solid #7c3aed22; }
+.mc-trigger-col { border-left: 3px dashed #c4b5fd; opacity:.85; transition:opacity .2s; }
+.mc-trigger-col:hover { opacity:1; }
+.mc-phdr { background: linear-gradient(135deg,#f3e8ff,#ede9fe) !important; border-bottom:2px solid #c4b5fd !important; }
+.mc-ciclo { border:1px solid #e5e7eb; border-radius:10px; margin:6px 8px; overflow:hidden; }
+.mc-ciclo.mc-complete { border-color:#86efac; background:#f0fdf4; }
+.mc-ciclo.mc-active  { border-color:#7c3aed; background:#faf5ff; }
+.mc-ciclo.mc-pending { border-color:#e5e7eb; background:#fafafa; }
+.mc-ciclo.mc-locked  { border-color:#fca5a5; background:#fff5f5; opacity:.7; }
+.mc-ciclo-hdr { display:flex; justify-content:space-between; align-items:center; padding:8px 12px; cursor:pointer; font-size:12px; font-weight:700; color:#4b5563; }
+.mc-ciclo-hdr:hover { background:rgba(124,58,237,.06); }
+.mc-num { color:#7c3aed; }
+.mc-prog { font-size:11px; background:#ede9fe; color:#6d28d9; padding:2px 7px; border-radius:20px; font-weight:600; }
+.mc-body { padding:4px 8px 8px; }
+.mc-step { margin:4px 0; border-radius:8px; }
+.mc-step .th { padding:8px 10px; }
+.mc-step .tt { font-size:11.5px !important; }
+
 /* ── EDITOR TOOLBAR ── */
 .etb { background:#fff; border:1px solid #d1d5db; border-radius:5px; padding:3px 9px; font-size:12px; cursor:pointer; color:#374151; transition:background .15s; }
 .etb:hover { background:#e0e7ff; border-color:#6366f1; color:#3730a3; }
@@ -389,7 +407,7 @@ body {
       <img src="data:image/png;base64,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" alt="Ayuntamiento de Padul">
       <div class="login-logo-text">
         <strong>Tramitador de Disciplina Urbanística</strong>
-        <span>Ayuntamiento de Padul · v1.28</span>
+        <span>Ayuntamiento de Padul · v1.29</span>
       </div>
     </div>
     <label class="login-label">API Key de ClickUp</label>
@@ -410,7 +428,7 @@ body {
 <header id="main-hdr" style="display:none">
   <div class="hdr-row1">
     <img class="logo-img" src="data:image/png;base64,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" alt="Padul">
-    <span class="version-badge">v1.28</span>
+    <span class="version-badge">v1.29</span>
     <button onclick="document.getElementById('help-mod').classList.remove('hidden')" style="padding:2px 9px;background:#fff;border:1px solid #d1d5db;border-radius:5px;font-size:11px;color:#6b7280;cursor:pointer;transition:all .15s;font-weight:500;" onmouseover="this.style.borderColor='#2563eb';this.style.color='#2563eb'" onmouseout="this.style.borderColor='#d1d5db';this.style.color='#6b7280'">📖 Manual</button>
     <div class="hsep"></div>
     <div class="tabs">
@@ -617,6 +635,7 @@ const S = {
   exp:null, attrs:{}, fids:{}, dirty:new Set(),
   tpls:{}, emitido:{}, expanded:{}, attrsOk:false,
   editTpl:null, cfgTpl:null, genTxt:'', genTitle:'',
+  mcActivo:{},
 };
 
 function h(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
@@ -630,7 +649,7 @@ function fmtTplName(titulo, name){
 function ek(n){ return `${S.exp?.id||'__'}:${n}`; }
 function isEm(n){ return !!S.emitido[ek(n)]; }
 function setEm(n,v){ const k=ek(n); if(v) S.emitido[k]=true; else delete S.emitido[k]; try{localStorage.setItem('tram_em',JSON.stringify(S.emitido));}catch(e){} }
-function loadEm(){ try{Object.assign(S.emitido,JSON.parse(localStorage.getItem('tram_em')||'{}'));}catch(e){} }
+function loadEm(){ try{Object.assign(S.emitido,JSON.parse(localStorage.getItem('tram_em')||'{}'));}catch(e){} mcLoadState(); }
 function showLoad(t='Cargando...'){ document.getElementById('loading-txt').textContent=t; document.getElementById('loading-ov').classList.remove('hidden'); }
 function hideLoad(){ document.getElementById('loading-ov').classList.add('hidden'); }
 function toast(m,err=false){ const e=document.getElementById('toast'); e.textContent=m; e.className='show'+(err?' err':' ok'); clearTimeout(e._t); e._t=setTimeout(()=>e.classList.remove('show'),2500); }
@@ -927,6 +946,127 @@ function computeStatus(tpl){
   return {st:'g',mA:[],mD:[]};
 }
 
+
+// ═══════════════════════════════════════════════════════════════════
+// MULTAS COERCITIVAS — ejecución forzosa (Art. 99 Ley 39/2015)
+// ═══════════════════════════════════════════════════════════════════
+
+const MC_STEPS = [
+  { key:'APERCIBIMIENTO', titulo:'Providencia de Apercibimiento',
+    info:'Concejal Delegado. Otorga plazo de cumplimiento con advertencia de multa coercitiva. Art. 99 Ley 39/2015.',
+    contenido:'# PROVIDENCIA DE APERCIBIMIENTO\n## Multa Coercitiva n.\xba {{_mc_num}} \u2014 Ejecuci\xf3n Forzosa\n\n---\n\n**Expediente:** {{num_expediente_restablecimiento}}\n**Interesado/a:** {{tercero_denunciado}} \u2014 DNI: {{dni_tercero_denunciado}}\n**Motivo:** {{motivo_ejecucion_forzosa}}\n\n---\n\nComprobado el incumplimiento de lo ordenado en la resoluci\xf3n firme, de conformidad con el art\xedculo 99 de la Ley 39/2015, de 1 de octubre,\n\n**DISPONGO**\n\nOtorgar al interesado un plazo de **{{plazo_cumplimiento_mc}}** para el cumplimiento voluntario, con apercibimiento de que, en caso de persistir el incumplimiento, se impondr\xe1 multa coercitiva por importe de **{{cuantia_multa_coercitiva}} \u20ac**.\n\n---\n\n*En Padul, a la fecha de la firma electr\xf3nica.*\n\n**EL CONCEJAL DELEGADO DE URBANISMO**\n*(Firmado electr\xf3nicamente)*'
+  },
+  { key:'NOTIFICACION_APERCIBIMIENTO', titulo:'Notificaci\xf3n del Apercibimiento',
+    info:'Notificaci\xf3n personal al interesado de la providencia de apercibimiento. Abre el plazo de cumplimiento.',
+    contenido:'# NOTIFICACI\xd3N DE APERCIBIMIENTO\n## Multa Coercitiva n.\xba {{_mc_num}}\n\n---\n\n**Expediente:** {{num_expediente_restablecimiento}}\n**Interesado/a:** {{tercero_denunciado}}\n**Domicilio:** {{domicilio_tercero_denunciado}}\n\n---\n\nSe le notifica la Providencia de Apercibimiento de Multa Coercitiva n.\xba {{_mc_num}}, otorg\xe1ndole un plazo de **{{plazo_cumplimiento_mc}}** para el cumplimiento de la obligaci\xf3n de {{motivo_ejecucion_forzosa}}.\n\nTranscurrido dicho plazo sin cumplimiento, se proceder\xe1 a imponer multa coercitiva por importe de **{{cuantia_multa_coercitiva}} \u20ac**.\n\n*En Padul, a la fecha de la firma electr\xf3nica.*\n\n**EL INSTRUCTOR DEL EXPEDIENTE**\n*(Firmado electr\xf3nicamente)*'
+  },
+  { key:'COMPROBACION_INCUMPLIMIENTO', titulo:'Certificado de Comprobaci\xf3n de Incumplimiento',
+    info:'Secretar\xeda certifica que transcurrido el plazo el interesado no ha cumplido la obligaci\xf3n. Habilita la resoluci\xf3n de multa.',
+    contenido:'# CERTIFICADO DE COMPROBACI\xd3N DE INCUMPLIMIENTO\n## Multa Coercitiva n.\xba {{_mc_num}}\n\n---\n\n**Expediente:** {{num_expediente_restablecimiento}}\n\n**CERTIFICA:**\n\nQue transcurrido el plazo concedido mediante Providencia de Apercibimiento de la Multa Coercitiva n.\xba {{_mc_num}}, el/la interesado/a **{{tercero_denunciado}}**, DNI {{dni_tercero_denunciado}}, **no ha procedido al cumplimiento** de la obligaci\xf3n de {{motivo_ejecucion_forzosa}}.\n\n*En Padul, a la fecha de la firma electr\xf3nica.*\n\n**EL/LA SECRETARIO/A**\n*(Firmado electr\xf3nicamente)*'
+  },
+  { key:'RESOLUCION_MULTA', titulo:'Resoluci\xf3n imponiendo Multa Coercitiva',
+    info:'Concejal Delegado impone la multa coercitiva. Art. 99 Ley 39/2015. Ejecutiva desde notificaci\xf3n.',
+    contenido:'# RESOLUCI\xd3N IMPONIENDO MULTA COERCITIVA N.\xba {{_mc_num}}\n\n---\n\n**Expediente:** {{num_expediente_restablecimiento}}\n**Interesado/a:** {{tercero_denunciado}} \u2014 DNI: {{dni_tercero_denunciado}}\n\n## FUNDAMENTOS DE DERECHO\n\nEl art\xedculo 99 de la Ley 39/2015 autoriza a las Administraciones P\xfablicas a imponer multas coercitivas, reiteradas por lapsos de tiempo suficientes para cumplir lo ordenado. La cuant\xeda deber\xe1 ser suficiente para estimular el cumplimiento.\n\n## RESUELVO\n\nImponer a **{{tercero_denunciado}}**, DNI {{dni_tercero_denunciado}}, multa coercitiva n.\xba {{_mc_num}} por importe de **{{cuantia_multa_coercitiva}} \u20ac**, por incumplimiento de la obligaci\xf3n de {{motivo_ejecucion_forzosa}}.\n\nContra esta resoluci\xf3n podr\xe1 interponerse recurso contencioso-administrativo ante el Juzgado de Granada en el plazo de dos meses.\n\n---\n\n*En Padul, a la fecha de la firma electr\xf3nica.*\n\n**EL CONCEJAL DELEGADO DE URBANISMO**\n*(Firmado electr\xf3nicamente)*'
+  },
+  { key:'NOTIFICACION_MULTA', titulo:'Notificaci\xf3n Resoluci\xf3n Multa Coercitiva',
+    info:'Notificaci\xf3n al interesado. La multa es ejecutiva desde este momento. Abre plazo para el siguiente ciclo.',
+    contenido:'# NOTIFICACI\xd3N DE RESOLUCI\xd3N DE MULTA COERCITIVA N.\xba {{_mc_num}}\n\n---\n\n**Expediente:** {{num_expediente_restablecimiento}}\n**Interesado/a:** {{tercero_denunciado}}\n**Domicilio:** {{domicilio_tercero_denunciado}}\n\n---\n\nSe le notifica la Resoluci\xf3n por la que se le impone multa coercitiva n.\xba {{_mc_num}} por importe de **{{cuantia_multa_coercitiva}} \u20ac**, por incumplimiento de la obligaci\xf3n de {{motivo_ejecucion_forzosa}}.\n\nLa multa coercitiva es compatible con la obligaci\xf3n de cumplimiento. De persistir el incumplimiento, podr\xe1n imponerse sucesivas multas coercitivas.\n\n*En Padul, a la fecha de la firma electr\xf3nica.*\n\n**EL INSTRUCTOR DEL EXPEDIENTE**\n*(Firmado electr\xf3nicamente)*'
+  },
+];
+
+const MC_MAX_CICLOS = 12;
+
+function mcKey(){ return (S.exp&&S.exp.id?S.exp.id:'__')+':'+S.tab; }
+function mcIsActivo(){ return !!S.mcActivo[mcKey()]; }
+function mcToggle(){
+  var k=mcKey(); S.mcActivo[k]=!S.mcActivo[k];
+  try{localStorage.setItem('tram_mc',JSON.stringify(S.mcActivo));}catch(e){}
+  renderKanban();
+}
+function mcLoadState(){
+  try{var v=localStorage.getItem('tram_mc');if(v)Object.assign(S.mcActivo,JSON.parse(v));}catch(e){}
+}
+function mcStepKey(ciclo,stepKey){ return 'MC:'+ciclo+':'+stepKey; }
+function mcIsEmStep(ciclo,stepKey){ return isEm(mcStepKey(ciclo,stepKey)); }
+function mcTogEmStep(ciclo,stepKey){ togEm(mcStepKey(ciclo,stepKey)); }
+function mcCicloComplete(ciclo){ return MC_STEPS.every(function(st){return mcIsEmStep(ciclo,st.key);}); }
+function mcCicloStatus(ciclo){
+  if(ciclo>1 && !mcCicloComplete(ciclo-1)) return 'locked';
+  var done=MC_STEPS.filter(function(st){return mcIsEmStep(ciclo,st.key);}).length;
+  if(done===MC_STEPS.length) return 'complete';
+  if(done===0) return 'pending';
+  return 'active';
+}
+function mcStepStatus(ciclo,stepIdx){
+  if(ciclo>1 && !mcCicloComplete(ciclo-1)) return 'r';
+  if(stepIdx>0 && !mcIsEmStep(ciclo,MC_STEPS[stepIdx-1].key)) return 'r';
+  return mcIsEmStep(ciclo,MC_STEPS[stepIdx].key)?'g':'g';
+}
+function mcOpenGen(ciclo,stepIdx){
+  var step=MC_STEPS[stepIdx];
+  var raw=step.contenido.replace(/\{\{_mc_num\}\}/g,String(ciclo));
+  var merged=merge(raw);
+  S.genTxt=merged; S.genTitle=step.titulo+' (Ciclo '+ciclo+')';
+  document.getElementById('gen-sub').textContent=S.genTitle;
+  if(window.marked){
+    document.getElementById('gen-doc').innerHTML=marked.parse(normalizeMarkdown(merged));
+  } else {
+    document.getElementById('gen-doc').textContent=merged;
+  }
+  document.getElementById('gen-mod').classList.remove('hidden');
+}
+function mkMCCol(){
+  var col=document.createElement('div'); col.className='pcol mc-col';
+  var ciclosCompletos=0;
+  for(var i=1;i<=MC_MAX_CICLOS;i++){if(mcCicloComplete(i))ciclosCompletos++;}
+  var nextCiclo=ciclosCompletos<MC_MAX_CICLOS?ciclosCompletos+1:MC_MAX_CICLOS;
+  col.innerHTML='<div class="phdr mc-phdr"><span class="pnum" style="background:#7c3aed;color:#fff;">MC</span>'
+    +'<span class="ptitle">Multas Coercitivas</span>'
+    +'<span class="pcount">'+ciclosCompletos+'/'+MC_MAX_CICLOS+'</span></div>'
+    +'<div style="padding:6px 10px 2px;font-size:11px;color:#7c3aed;font-weight:600;">'
+    +'\u2696\ufe0f Ejecci\xf3n Forzosa \u00b7 Art. 99 Ley 39/2015 \u00b7 Hasta 12 ciclos</div>';
+  for(var ciclo=1;ciclo<=MC_MAX_CICLOS;ciclo++){
+    var status=mcCicloStatus(ciclo);
+    if(status==='locked' && ciclo>nextCiclo+1) continue;
+    var expanded=S.expanded['MC_C'+ciclo]||false;
+    var donePasos=MC_STEPS.filter(function(st){return mcIsEmStep(ciclo,st.key);}).length;
+    var cicloEl=document.createElement('div'); cicloEl.className='mc-ciclo mc-'+status;
+    var icon=status==='complete'?'\u2713 ':status==='locked'?'\ud83d\udd12 ':status==='active'?'\u25b6 ':'\u25cb ';
+    var c=ciclo;
+    cicloEl.innerHTML='<div class="mc-ciclo-hdr" onclick="S.expanded[\'MC_C'+c+'\']=!S.expanded[\'MC_C'+c+'\'];renderKanban();">'
+      +'<span class="mc-num">'+icon+'Ciclo '+ciclo+'</span>'
+      +'<span class="mc-prog">'+donePasos+'/'+MC_STEPS.length+'</span></div>';
+    if(expanded){
+      var body=document.createElement('div'); body.className='mc-body';
+      for(var idx=0;idx<MC_STEPS.length;idx++){
+        (function(step,si,cc){
+          var st=mcStepStatus(cc,si);
+          var em=mcIsEmStep(cc,step.key);
+          var card=document.createElement('div'); card.className='tc s'+st+' mc-step';
+          card.innerHTML='<div class="th">'
+            +'<div class="sd '+st+'"></div>'
+            +'<div class="tt" style="font-size:11.5px;">'+h(step.titulo)+'</div>'
+            +'<div class="tem'+(em?' done':'')+'" title="'+(em?'Emitido \u2014 click para desmarcar':'Marcar como emitido')+'">'+(em?'\u2713':'')+'</div>'
+            +'</div>'
+            +'<div class="tb">'
+            +'<div class="tinfo">'+h(step.info)+'</div>'
+            +'<div class="tacts">'
+            +'<button class="bs bg2 on" onclick="event.stopPropagation();mcOpenGen('+cc+','+si+')">&#128196; Generar</button>'
+            +'<button class="bs be" onclick="event.stopPropagation();mcTogEmStep('+cc+',\''+step.key+'\');renderKanban();">'+(em?'\u2713 Emitido':'Marcar emitido')+'</button>'
+            +'</div></div>';
+          body.appendChild(card);
+        })(MC_STEPS[idx],idx,ciclo);
+      }
+      cicloEl.appendChild(body);
+    }
+    col.appendChild(cicloEl);
+  }
+  var closeBtn=document.createElement('div'); closeBtn.style.cssText='padding:10px;text-align:center;';
+  closeBtn.innerHTML='<button class="bsec" style="font-size:11px;width:100%;" onclick="mcToggle()">\u2715 Cerrar Multas Coercitivas</button>';
+  col.appendChild(closeBtn);
+  return col;
+}
+
 function renderKanban(){
   const wrap=document.getElementById('kanban'); wrap.innerHTML='';
   const phases=S.tab==='r'?PHASES_R:PHASES_S;
@@ -937,6 +1077,28 @@ function renderKanban(){
     col.innerHTML=`<div class="phdr"><span class="pnum">${ph.id}</span><span class="ptitle">${ph.label}</span><span class="pcount">${gc}/${tpls.length}</span></div>`;
     for(const tpl of tpls) col.appendChild(mkCard(tpl));
     wrap.appendChild(col);
+  }
+  // MC column: append if active, else show trigger button as last column
+  if(mcIsActivo()){
+    wrap.appendChild(mkMCCol());
+  } else {
+    const trigCol = document.createElement('div');
+    trigCol.className = 'pcol mc-trigger-col';
+    trigCol.innerHTML = `
+      <div class="phdr" style="background:linear-gradient(135deg,#f3e8ff,#ede9fe);border-bottom:2px solid #c4b5fd;">
+        <span class="pnum" style="background:#7c3aed22;color:#7c3aed;border:1px solid #c4b5fd;">MC</span>
+        <span class="ptitle" style="color:#6d28d9;">Multas Coercitivas</span>
+      </div>
+      <div style="padding:20px 12px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px;">
+        <div style="font-size:28px;">⚖️</div>
+        <div style="font-size:12px;color:#6d28d9;font-weight:600;line-height:1.5;">Ejecución Forzosa</div>
+        <div style="font-size:11px;color:#7c3aed99;line-height:1.5;text-align:center;">Art. 99 Ley 39/2015<br>Hasta 12 ciclos mensuales</div>
+        <button class="bprim" style="background:#7c3aed;font-size:12px;padding:8px 14px;width:100%;margin-top:4px;" onclick="mcToggle()">
+          Iniciar Multas Coercitivas
+        </button>
+        <div style="font-size:10px;color:#9ca3af;line-height:1.5;">Solo si hay resolución firme<br>incumplida o infracción legalizable<br>sin legalizar.</div>
+      </div>`;
+    wrap.appendChild(trigCol);
   }
 }
 
