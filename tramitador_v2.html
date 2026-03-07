@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- v1.21 build:20260306-044837 -->
+<!-- v1.13 build:2026030760306-044837 -->
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -318,10 +318,10 @@ body {
 
 /* ── DOCUMENT PREVIEW (gen-doc) — keep Word fonts ── */
 #gen-doc { background: #fff; border: 1.5px solid var(--border); border-radius: 12px; padding: 28px 36px; font-family: "Times New Roman", serif; font-size: 12pt; line-height: 1.7; color: #1a1a1a; }
-#gen-doc h1 { font-family: Arial, sans-serif; font-size: 14pt; font-weight: bold; text-align: center; color: #1a1a1a; margin: 14px 0 6px; }
-#gen-doc h2 { font-family: Arial, sans-serif; font-size: 13pt; font-weight: bold; text-decoration: underline; color: #1a1a1a; margin: 12px 0 5px; }
-#gen-doc h3 { font-family: Arial, sans-serif; font-size: 12pt; font-weight: bold; color: #1a1a1a; margin: 10px 0 4px; }
-#gen-doc p { font-family: "Times New Roman", serif; font-size: 12pt; margin: 6px 0; text-align: justify; }
+#gen-doc h1 { font-family: Arial, sans-serif; font-size: 14pt; font-weight: bold; text-align: center; color: #1a1a1a; margin: 22px 0 10px; }
+#gen-doc h2 { font-family: Arial, sans-serif; font-size: 13pt; font-weight: bold; text-decoration: underline; color: #1a1a1a; margin: 20px 0 8px; }
+#gen-doc h3 { font-family: Arial, sans-serif; font-size: 12pt; font-weight: bold; color: #1a1a1a; margin: 16px 0 6px; }
+#gen-doc p { font-family: "Times New Roman", serif; font-size: 12pt; margin: 8px 0; text-align: justify; line-height: 1.7; }
 #gen-doc strong { font-weight: bold; }
 #gen-doc ul, #gen-doc ol { margin: 4px 0 4px 20px; }
 #gen-doc li { font-family: "Times New Roman", serif; font-size: 12pt; margin: 3px 0; }
@@ -989,12 +989,26 @@ function merge(c){
     return sv;
   });
 }
+function normalizeMarkdown(txt){
+  // 1. Normalizar saltos de línea (ClickUp puede enviar \r\n)
+  txt = txt.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+  // 2. Asegurar espacio después de # en títulos (##Título → ## Título)
+  txt = txt.replace(/^(#{1,6})([^#\s])/gm, '$1 $2');
+  // 3. Preservar líneas en blanco múltiples como espaciado extra
+  //    marked.js las colapsa, las convertimos en <br> explícitos
+  txt = txt.replace(/\n{3,}/g, function(m){
+    const extra = m.length - 2; // líneas de más
+    return '\n\n' + '<br>\n'.repeat(extra) + '\n';
+  });
+  return txt;
+}
+
 function openGen(n){
   const t=S.tpls[n]; if(!t) return;
   S.genTxt=merge(t.contenido); S.genTitle=t.titulo||n;
   document.getElementById('gen-sub').textContent=S.genTitle;
   if(window.marked){
-    document.getElementById('gen-doc').innerHTML = marked.parse(S.genTxt);
+    document.getElementById('gen-doc').innerHTML = marked.parse(normalizeMarkdown(S.genTxt));
   } else {
     document.getElementById('gen-doc').textContent = S.genTxt;
   }
